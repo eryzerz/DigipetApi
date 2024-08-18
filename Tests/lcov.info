@@ -1,3 +1,24 @@
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/EnumSchemaFilter.cs
+FN:9,System.Void EnumSchemaFilter::Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)
+FNDA:0,System.Void EnumSchemaFilter::Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+BRDA:11,27,0,0
+BRDA:11,27,1,0
+LF:9
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
 SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Program.cs
 FN:12,System.Void Program::<Main>$(System.String[])
 FNDA:0,System.Void Program::<Main>$(System.String[])
@@ -35,13 +56,13 @@ DA:47,0
 DA:48,0
 DA:49,0
 DA:50,0
+DA:51,0
+DA:52,0
 DA:53,0
+DA:54,0
 DA:55,0
 DA:56,0
-DA:57,0
-DA:58,0
 DA:59,0
-DA:60,0
 DA:61,0
 DA:62,0
 DA:63,0
@@ -55,12 +76,12 @@ DA:70,0
 DA:71,0
 DA:72,0
 DA:73,0
+DA:74,0
+DA:75,0
 DA:76,0
 DA:77,0
 DA:78,0
 DA:79,0
-DA:80,0
-DA:81,0
 DA:82,0
 DA:83,0
 DA:84,0
@@ -77,32 +98,38 @@ DA:94,0
 DA:95,0
 DA:96,0
 DA:97,0
+DA:98,0
+DA:99,0
 DA:100,0
 DA:101,0
-DA:104,0
+DA:102,0
+DA:103,0
+DA:106,0
 DA:107,0
-DA:109,0
-DA:111,0
-DA:112,0
+DA:110,0
 DA:113,0
-DA:114,0
 DA:115,0
-DA:116,0
+DA:117,0
+DA:118,0
 DA:119,0
 DA:120,0
 DA:121,0
 DA:122,0
-DA:123,0
 DA:125,0
+DA:126,0
+DA:127,0
 DA:128,0
-DA:130,0
-DA:132,0
+DA:129,0
+DA:131,0
 DA:134,0
-BRDA:119,413,0,0
-BRDA:119,413,1,0
-BRDA:62,123,0,0
-BRDA:62,123,1,0
-LF:97
+DA:136,0
+DA:138,0
+DA:140,0
+BRDA:125,413,0,0
+BRDA:125,413,1,0
+BRDA:68,123,0,0
+BRDA:68,123,1,0
+LF:103
 LH:0
 BRF:4
 BRH:0
@@ -1816,15 +1843,15 @@ FNF:1
 FNH:1
 end_of_record
 SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/ScheduledTask/ScheduledFeedingDto.cs
-FN:7,System.Int32 DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_PetId()
+FN:10,System.Int32 DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_PetId()
 FNDA:9,System.Int32 DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_PetId()
-DA:8,9
-FN:10,System.String DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_FeedingTime()
-FNDA:10,System.String DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_FeedingTime()
-DA:11,10
-FN:13,System.DayOfWeek[] DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_DaysOfWeek()
-FNDA:9,System.DayOfWeek[] DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_DaysOfWeek()
-DA:14,9
+DA:11,9
+FN:15,System.String DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_FeedingTime()
+FNDA:6,System.String DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_FeedingTime()
+DA:16,6
+FN:20,System.String[] DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_DaysOfWeek()
+FNDA:5,System.String[] DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_DaysOfWeek()
+DA:21,5
 LF:3
 LH:3
 BRF:0
@@ -1844,25 +1871,25 @@ FNF:1
 FNH:0
 end_of_record
 SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Pet/InteractPetDto.cs
-FN:9,System.String DigipetApi.Api.Dtos.Pet.InteractPetDto::get_Type()
-FNDA:25,System.String DigipetApi.Api.Dtos.Pet.InteractPetDto::get_Type()
-DA:10,25
-FN:15,System.ComponentModel.DataAnnotations.ValidationResult DigipetApi.Api.Dtos.Pet.InteractionTypeAttribute::IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+FN:19,DigipetApi.Api.Dtos.Pet.InteractionType DigipetApi.Api.Dtos.Pet.InteractPetDto::get_Type()
+FNDA:25,DigipetApi.Api.Dtos.Pet.InteractionType DigipetApi.Api.Dtos.Pet.InteractPetDto::get_Type()
+DA:20,25
+FN:25,System.ComponentModel.DataAnnotations.ValidationResult DigipetApi.Api.Dtos.Pet.InteractionTypeAttribute::IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
 FNDA:0,System.ComponentModel.DataAnnotations.ValidationResult DigipetApi.Api.Dtos.Pet.InteractionTypeAttribute::IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:24,0
-DA:25,0
 DA:26,0
-BRDA:17,14,0,0
-BRDA:20,78,0,0
-BRDA:20,78,1,0
-BRDA:17,14,1,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:34,0
+DA:35,0
+DA:36,0
+BRDA:27,14,0,0
+BRDA:30,78,0,0
+BRDA:30,78,1,0
+BRDA:27,14,1,0
 LF:11
 LH:1
 BRF:4
@@ -2319,235 +2346,236 @@ FNF:8
 FNH:8
 end_of_record
 SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Controllers/PetController.cs
-FN:28,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Controllers.PetController::get_Pets()
+FN:30,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Controllers.PetController::get_Pets()
 FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Controllers.PetController::get_Pets()
-DA:29,0
-FN:32,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetAll()
+DA:31,0
+FN:34,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetAll()
 FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetAll()
-DA:33,0
-DA:34,0
 DA:35,0
+DA:36,0
 DA:37,0
-DA:38,0
-FN:63,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetUserPets()
+DA:39,0
+DA:40,0
+FN:65,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetUserPets()
 FNDA:5,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetUserPets()
-DA:64,5
-DA:65,5
-DA:66,4
-DA:67,4
+DA:66,5
+DA:67,5
 DA:68,4
-DA:69,14
-DA:71,4
-DA:72,4
-BRDA:65,25,0,1
-BRDA:65,25,1,4
-BRDA:65,37,0,1
-BRDA:65,37,1,5
-FN:75,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetAvailablePets()
+DA:69,4
+DA:70,4
+DA:71,14
+DA:73,4
+DA:74,4
+BRDA:67,25,0,1
+BRDA:67,25,1,4
+BRDA:67,37,0,1
+BRDA:67,37,1,5
+FN:77,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetAvailablePets()
 FNDA:4,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.PetController::GetAvailablePets()
-DA:76,4
-DA:77,4
 DA:78,4
 DA:79,4
-DA:80,30
-DA:82,4
-DA:83,4
-FN:21,System.Void DigipetApi.Api.Controllers.PetController::.ctor(DigipetApi.Api.Data.ApplicationDBContext,DigipetApi.Api.Interfaces.IPetCacheService)
+DA:80,4
+DA:81,4
+DA:82,30
+DA:84,4
+DA:85,4
+FN:23,System.Void DigipetApi.Api.Controllers.PetController::.ctor(DigipetApi.Api.Data.ApplicationDBContext,DigipetApi.Api.Interfaces.IPetCacheService)
 FNDA:32,System.Void DigipetApi.Api.Controllers.PetController::.ctor(DigipetApi.Api.Data.ApplicationDBContext,DigipetApi.Api.Interfaces.IPetCacheService)
-DA:22,32
-DA:23,32
 DA:24,32
 DA:25,32
 DA:26,32
-FN:86,System.Void DigipetApi.Api.Controllers.PetController/<AdoptPet>d__9::MoveNext()
+DA:27,32
+DA:28,32
+FN:249,System.DayOfWeek DigipetApi.Api.Controllers.PetController/<>c::<ScheduleFeeding>b__12_0(System.String)
+FNDA:3,System.DayOfWeek DigipetApi.Api.Controllers.PetController/<>c::<ScheduleFeeding>b__12_0(System.String)
+DA:250,3
+FN:88,System.Void DigipetApi.Api.Controllers.PetController/<AdoptPet>d__9::MoveNext()
 FNDA:3,System.Void DigipetApi.Api.Controllers.PetController/<AdoptPet>d__9::MoveNext()
-DA:87,3
-DA:88,3
+DA:89,3
 DA:90,3
-DA:91,1
-DA:92,1
-DA:95,2
-DA:96,1
-DA:97,1
-DA:100,1
+DA:92,3
+DA:93,1
+DA:94,1
+DA:97,2
+DA:98,1
+DA:99,1
 DA:102,1
-DA:103,1
 DA:104,1
+DA:105,1
 DA:106,1
-DA:107,1
+DA:108,1
 DA:109,1
-DA:110,3
-BRDA:90,193,0,1
-BRDA:90,193,1,2
-BRDA:95,237,0,1
-BRDA:95,237,1,1
-BRDA:100,285,0,0
-BRDA:100,285,1,1
-BRDA:100,297,0,0
-BRDA:100,297,1,1
-FN:41,System.Void DigipetApi.Api.Controllers.PetController/<GetById>d__6::MoveNext()
+DA:111,1
+DA:112,3
+BRDA:92,193,0,1
+BRDA:92,193,1,2
+BRDA:97,237,0,1
+BRDA:97,237,1,1
+BRDA:102,285,0,0
+BRDA:102,285,1,1
+BRDA:102,297,0,0
+BRDA:102,297,1,1
+FN:43,System.Void DigipetApi.Api.Controllers.PetController/<GetById>d__6::MoveNext()
 FNDA:3,System.Void DigipetApi.Api.Controllers.PetController/<GetById>d__6::MoveNext()
-DA:42,3
-DA:43,3
 DA:44,3
-DA:45,1
-DA:46,1
-DA:49,2
+DA:45,3
+DA:46,3
+DA:47,1
+DA:48,1
 DA:51,2
-DA:52,1
-DA:53,1
-DA:56,1
-DA:57,1
+DA:53,2
+DA:54,1
+DA:55,1
+DA:58,1
 DA:59,1
-DA:60,3
-BRDA:44,189,0,1
-BRDA:44,189,1,2
-BRDA:51,385,0,1
-BRDA:51,385,1,1
-FN:146,System.Void DigipetApi.Api.Controllers.PetController/<Interact>d__11::MoveNext()
+DA:61,1
+DA:62,3
+BRDA:46,189,0,1
+BRDA:46,189,1,2
+BRDA:53,385,0,1
+BRDA:53,385,1,1
+FN:148,System.Void DigipetApi.Api.Controllers.PetController/<Interact>d__11::MoveNext()
 FNDA:9,System.Void DigipetApi.Api.Controllers.PetController/<Interact>d__11::MoveNext()
-DA:147,9
-DA:148,9
 DA:149,9
-DA:150,2
-DA:151,2
+DA:150,9
+DA:151,9
 DA:152,2
-DA:153,1
-DA:154,1
+DA:153,2
+DA:154,2
+DA:155,1
 DA:156,1
-DA:157,1
-DA:160,8
-DA:163,8
-DA:164,1
-DA:165,1
-DA:169,7
-DA:172,2
-DA:173,2
+DA:158,1
+DA:159,1
+DA:162,8
+DA:165,8
+DA:166,1
+DA:167,1
+DA:171,7
 DA:174,2
-DA:176,1
-DA:177,1
+DA:175,2
+DA:176,2
 DA:178,1
 DA:179,1
+DA:180,1
 DA:181,1
-DA:182,1
 DA:183,1
 DA:184,1
+DA:185,1
 DA:186,1
-DA:187,1
 DA:188,1
 DA:189,1
+DA:190,1
 DA:191,1
-DA:192,1
 DA:193,1
 DA:194,1
+DA:195,1
 DA:196,1
-DA:200,6
-DA:201,6
+DA:198,1
 DA:202,6
+DA:203,6
 DA:204,6
-DA:207,6
-DA:210,6
-DA:211,6
-DA:212,1
-DA:213,1
+DA:206,6
+DA:209,6
+DA:212,6
+DA:213,6
 DA:214,1
 DA:215,1
 DA:216,1
 DA:217,1
 DA:218,1
-DA:220,6
-DA:221,9
-BRDA:149,207,0,2
-BRDA:152,383,0,1
-BRDA:152,383,1,1
-BRDA:149,207,1,8
-BRDA:160,451,0,0
-BRDA:160,451,1,8
-BRDA:160,463,0,0
-BRDA:160,463,1,8
-BRDA:163,528,0,1
-BRDA:163,528,1,7
-BRDA:169,599,0,5
-BRDA:169,613,0,4
-BRDA:169,627,0,3
-BRDA:169,644,0,2
-BRDA:169,599,1,2
-BRDA:169,613,1,1
-BRDA:169,627,1,1
-BRDA:169,644,1,1
-BRDA:169,661,1,1
-BRDA:169,661,0,1
-BRDA:211,1403,0,1
-BRDA:211,1403,1,6
-FN:113,System.Void DigipetApi.Api.Controllers.PetController/<ReturnPet>d__10::MoveNext()
+DA:219,1
+DA:220,1
+DA:222,6
+DA:223,9
+BRDA:151,207,0,2
+BRDA:154,383,0,1
+BRDA:154,383,1,1
+BRDA:151,207,1,8
+BRDA:162,451,0,0
+BRDA:162,451,1,8
+BRDA:162,463,0,0
+BRDA:162,463,1,8
+BRDA:165,528,0,1
+BRDA:165,528,1,7
+BRDA:171,584,1,2
+BRDA:171,584,2,1
+BRDA:171,584,3,1
+BRDA:171,584,4,1
+BRDA:171,584,5,1
+BRDA:171,584,0,1
+BRDA:213,1339,0,1
+BRDA:213,1339,1,6
+FN:115,System.Void DigipetApi.Api.Controllers.PetController/<ReturnPet>d__10::MoveNext()
 FNDA:4,System.Void DigipetApi.Api.Controllers.PetController/<ReturnPet>d__10::MoveNext()
-DA:114,4
-DA:115,4
+DA:116,4
 DA:117,4
-DA:118,1
-DA:119,1
-DA:122,3
+DA:119,4
+DA:120,1
+DA:121,1
 DA:124,3
-DA:125,1
-DA:126,1
-DA:130,2
-DA:131,2
-DA:134,2
-DA:135,2
+DA:126,3
+DA:127,1
+DA:128,1
+DA:132,2
+DA:133,2
+DA:136,2
 DA:137,2
 DA:139,2
-DA:140,2
+DA:141,2
 DA:142,2
-DA:143,4
-BRDA:117,207,0,1
-BRDA:117,207,1,3
-BRDA:122,250,0,0
-BRDA:122,250,1,3
-BRDA:122,262,0,0
-BRDA:122,262,1,3
-BRDA:124,327,0,1
-BRDA:124,327,1,2
-FN:224,System.Void DigipetApi.Api.Controllers.PetController/<ScheduleFeeding>d__12::MoveNext()
+DA:144,2
+DA:145,4
+BRDA:119,207,0,1
+BRDA:119,207,1,3
+BRDA:124,250,0,0
+BRDA:124,250,1,3
+BRDA:124,262,0,0
+BRDA:124,262,1,3
+BRDA:126,327,0,1
+BRDA:126,327,1,2
+FN:226,System.Void DigipetApi.Api.Controllers.PetController/<ScheduleFeeding>d__12::MoveNext()
 FNDA:4,System.Void DigipetApi.Api.Controllers.PetController/<ScheduleFeeding>d__12::MoveNext()
-DA:225,4
-DA:226,4
 DA:227,4
-DA:228,1
-DA:229,1
-DA:232,3
-DA:233,3
-DA:234,1
-DA:235,1
-DA:238,2
-DA:239,1
-DA:240,1
-DA:244,1
-DA:245,1
+DA:228,4
+DA:229,4
+DA:230,1
+DA:231,1
+DA:234,3
+DA:235,3
+DA:236,1
+DA:237,1
+DA:240,2
+DA:241,1
+DA:242,1
+DA:246,1
 DA:247,1
-DA:248,1
 DA:249,1
-DA:250,1
 DA:251,1
-DA:252,1
 DA:253,1
+DA:254,1
 DA:255,1
 DA:256,1
+DA:257,1
 DA:258,1
-DA:259,4
-BRDA:227,198,0,1
-BRDA:227,198,1,3
-BRDA:232,246,0,0
-BRDA:232,246,1,3
-BRDA:232,258,0,0
-BRDA:232,258,1,3
-BRDA:233,323,0,1
-BRDA:233,323,1,2
-BRDA:238,377,0,1
-BRDA:238,377,1,1
-LF:149
-LH:143
-BRF:56
-BRH:48
-FNF:10
-FNH:8
+DA:259,1
+DA:261,1
+DA:262,1
+DA:264,1
+DA:265,4
+BRDA:229,198,0,1
+BRDA:229,198,1,3
+BRDA:234,246,0,0
+BRDA:234,246,1,3
+BRDA:234,258,0,0
+BRDA:234,258,1,3
+BRDA:235,323,0,1
+BRDA:235,323,1,2
+BRDA:240,377,0,1
+BRDA:240,377,1,1
+LF:152
+LH:146
+BRF:52
+BRH:44
+FNF:11
+FNH:9
 end_of_record
