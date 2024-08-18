@@ -13,6 +13,9 @@ services:
       - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/cert.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=YourSecurePassword
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=digipet;User Id=sa;Password=MyPass@word;TrustServerCertificate=True;
       - Redis__ConnectionString=redis:6379
     networks:
