@@ -16,6 +16,54 @@ With this API, users can:
 - Interact with their pets
 - Create and manage feeding schedules for pets
 
+### API Documentation
+
+#### Auth
+
+> POST /api/auth/login
+
+> POST /api/auth/register
+
+> POST /api/auth/refresh-token
+
+> POST /api/auth/logout
+
+#### Pets
+
+Get all pets:
+
+> GET /api/pet
+
+Get a pet by id:
+
+> GET /api/pet/{id}
+
+Get all adopted pets by user:
+
+> GET /api/pet
+
+Get all available pets to adopt:
+
+> GET /api/pet/available
+
+Adopt a pet:
+
+> PATCH /api/pet/{id}/adopt
+
+Return a pet, will decrease the pet's happiness and mood:
+
+> PATCH /api/pet/{id}/return
+
+Interact with a pet; you can feed, play, groom, train, groom, and adventure with a pet. Each interaction will have a different effect on the pet's attributes:
+
+> PATCH /api/pet/{id}/interact
+
+Create a schedule to feed a pet:
+
+> POST /api/pet/{id}/schedule-feeding
+
+**Note:** The attributes of the adopted pets will decrease over time, and the pets will need to be fed, played with, groomed, trained, and/or adventured with to keep their attributes up.
+
 ## Getting Started
 
 ### Prerequisites
@@ -34,6 +82,10 @@ To run the project, use Docker Compose:
    ```
 
 2. Once all containers are running, access the API documentation at https://localhost:8081/swagger/index.html
+
+3. To be able to use the API, you will need to register a user and get the JWT token. You can do this by using the Register endpoint and then using the Login endpoint to get the JWT token.
+
+4. You can use the JWT token to authorize your requests to the API. Find the "Authorize" button in the swagger UI and enter the JWT token in the "Value" field. **Do not forget to add the "Bearer " prefix to the token**.
 
 ### Unit Test
 
