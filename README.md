@@ -37,15 +37,21 @@ To run the project, use Docker Compose:
 
 ### Unit Test
 
-1. To run unit tests:
+1. Navigate to the Tests folder:
 
    ```bash
    cd ./Tests
-   dotnet build
-   dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info -v n
    ```
 
-2. To generate a coverage report:
+2. Build the Tests project:
+   ```bash
+   dotnet build DigipetApi.Tests.csproj
+   ```
+3. Run the test:
+   ```bash
+   dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info -v n
+   ```
+4. Generate a coverage report:
    ```bash
    coverlet bin/Debug/net8.0/DigipetApi.Tests.dll --target "dotnet" --targetargs "test --no-build" --format lcov --output ./lcov.info
    ```

@@ -9,6 +9,8 @@ using DigipetApi.Api.Services;
 using DigipetApi.Api.Models;
 using DigipetApi.Api.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+
 namespace DigipetApi.Api.Controllers;
 
 [ApiController]
@@ -166,28 +168,28 @@ public class PetController : ControllerBase
         }
 
         // Update pet attributes based on interaction type
-        switch (interactPetDto.Type.ToLower())
+        switch (interactPetDto.Type)
         {
-            case "feed":
+            case InteractionType.feed:
                 cachedPet.Health += 10;
                 cachedPet.Happiness += 5;
                 break;
-            case "play":
+            case InteractionType.play:
                 cachedPet.Mood += 15;
                 cachedPet.Happiness += 10;
                 cachedPet.Health -= 5; // Playing makes the pet a bit tired
                 break;
-            case "train":
+            case InteractionType.train:
                 cachedPet.Health += 5;
                 cachedPet.Mood -= 10; // Training can be stressful
                 cachedPet.Happiness += 15; // But it's rewarding in the long run
                 break;
-            case "groom":
+            case InteractionType.groom:
                 cachedPet.Health += 15;
                 cachedPet.Happiness += 5;
                 cachedPet.Mood -= 5; // Some pets might not enjoy grooming
                 break;
-            case "adventure":
+            case InteractionType.adventure:
                 cachedPet.Mood += 20;
                 cachedPet.Happiness += 15;
                 cachedPet.Health -= 10; // Adventures can be tiring and slightly risky
@@ -244,12 +246,16 @@ public class PetController : ControllerBase
         var localTime = DateTime.SpecifyKind(DateTime.Now.Date.Add(feedingTime), DateTimeKind.Local);
         var utcTime = localTime.ToUniversalTime();
 
+        var daysOfWeek = scheduleFeedingDto.DaysOfWeek
+            .Select(day => Enum.Parse<DayOfWeek>(day, true))
+            .ToArray();
+
         var scheduledTask = new ScheduledTask
         {
             PetId = scheduleFeedingDto.PetId,
             TaskType = "Feed",
             ScheduledTime = utcTime,
-            DaysOfWeek = string.Join(",", scheduleFeedingDto.DaysOfWeek)
+            DaysOfWeek = string.Join(",", daysOfWeek)
         };
 
         _context.ScheduledTasks.Add(scheduledTask);

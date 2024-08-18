@@ -3,11 +3,21 @@ namespace DigipetApi.Api.Dtos.Pet;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
+public enum InteractionType
+{
+    feed,
+    play,
+    train,
+    groom,
+    adventure
+}
+
 public class InteractPetDto
 {
     [Required]
-    [InteractionType]
-    public string Type { get; set; } = "play";
+    [EnumDataType(typeof(InteractionType))]
+    public InteractionType Type { get; set; } = InteractionType.play;
 }
 
 public class InteractionTypeAttribute : ValidationAttribute

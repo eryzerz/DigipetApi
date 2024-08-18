@@ -47,6 +47,12 @@ builder.Services.AddSwaggerGen(c =>
             new string[] {}
         }
     });
+
+    // Add EnumSchemaFilter to display enum options in Swagger UI
+    c.SchemaFilter<EnumSchemaFilter>();
+
+    // Use AllOf to extend reference schemas
+    c.UseAllOfToExtendReferenceSchemas();
 });
 
 // Configure JWT authentication

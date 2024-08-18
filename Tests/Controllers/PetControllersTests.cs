@@ -12,6 +12,7 @@ using DigipetApi.Api.Interfaces;
 using DigipetApi.Api.Models;
 using DigipetApi.Api.Dtos.ScheduledTask;
 using System.Security.Claims;
+using DigipetApi.Api.Dtos;
 
 namespace DigipetApi.Tests.Controllers;
 public class PetControllerTests
@@ -621,7 +622,7 @@ public class PetControllerTests
         var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
-        var interactDto = new InteractPetDto { Type = "feed" };
+        var interactDto = new InteractPetDto { Type = InteractionType.feed };
 
         // Act
         var result = await controller.Interact(petId, interactDto);
@@ -650,7 +651,7 @@ public class PetControllerTests
         var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
-        var interactDto = new InteractPetDto { Type = "play" };
+        var interactDto = new InteractPetDto { Type = InteractionType.play };
 
         // Act
         var result = await controller.Interact(petId, interactDto);
@@ -676,7 +677,7 @@ public class PetControllerTests
 
         var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
 
-        var interactDto = new InteractPetDto { Type = "feed" };
+        var interactDto = new InteractPetDto { Type = InteractionType.feed };
 
         // Act
         var result = await controller.Interact(petId, interactDto);
@@ -699,7 +700,7 @@ public class PetControllerTests
         var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
         SetupUserClaim(controller, differentUserId);
 
-        var interactDto = new InteractPetDto { Type = "feed" };
+        var interactDto = new InteractPetDto { Type = InteractionType.feed };
 
         // Act
         var result = await controller.Interact(petId, interactDto);
@@ -722,7 +723,7 @@ public class PetControllerTests
         var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
-        var interactDto = new InteractPetDto { Type = "invalid" };
+        var interactDto = new InteractPetDto { Type = (InteractionType)999 };
 
         // Act
         var result = await controller.Interact(petId, interactDto);
@@ -733,10 +734,10 @@ public class PetControllerTests
     }
 
     [Theory]
-    [InlineData("train", 55, 40, 65)]
-    [InlineData("groom", 65, 45, 55)]
-    [InlineData("adventure", 40, 70, 65)]
-    public async Task Interact_DifferentInteractionTypes_UpdatesAttributesCorrectly(string interactionType, int expectedHealth, int expectedMood, int expectedHappiness)
+    [InlineData(InteractionType.train, 55, 40, 65)]
+    [InlineData(InteractionType.groom, 65, 45, 55)]
+    [InlineData(InteractionType.adventure, 40, 70, 65)]
+    public async Task Interact_DifferentInteractionTypes_UpdatesAttributesCorrectly(InteractionType interactionType, int expectedHealth, int expectedMood, int expectedHappiness)
     {
         // Arrange
         var petId = 1;
@@ -776,7 +777,7 @@ public class PetControllerTests
         var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
-        var interactDto = new InteractPetDto { Type = "feed" };
+        var interactDto = new InteractPetDto { Type = InteractionType.feed };
 
         // Act
         var result = await controller.Interact(petId, interactDto);
@@ -801,7 +802,7 @@ public class PetControllerTests
         {
             PetId = petId,
             FeedingTime = "12:00:00",
-            DaysOfWeek = new[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
+            DaysOfWeek = new[] { "Monday", "Wednesday", "Friday" }
         };
 
         var mockSet = new Mock<DbSet<Pet>>();
@@ -827,7 +828,7 @@ public class PetControllerTests
         {
             PetId = petId,
             FeedingTime = "12:00:00",
-            DaysOfWeek = new[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
+            DaysOfWeek = new[] { "Monday", "Wednesday", "Friday" }
         };
 
         var mockSet = new Mock<DbSet<Pet>>();
@@ -853,7 +854,7 @@ public class PetControllerTests
         {
             PetId = petId,
             FeedingTime = "12:00:00",
-            DaysOfWeek = new[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
+            DaysOfWeek = new[] { "Monday", "Wednesday", "Friday" }
         };
 
         var mockSet = new Mock<DbSet<Pet>>();
@@ -880,7 +881,7 @@ public class PetControllerTests
         {
             PetId = petId,
             FeedingTime = "InvalidTime",
-            DaysOfWeek = new[] { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
+            DaysOfWeek = new[] { "Monday", "Wednesday", "Friday" }
         };
 
         var mockSet = new Mock<DbSet<Pet>>();
