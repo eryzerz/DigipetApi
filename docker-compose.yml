@@ -13,18 +13,35 @@ services:
       - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DigipetDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=digipet;User Id=sa;Password=MyPass@word;TrustServerCertificate=True;
       - Redis__ConnectionString=redis:6379
+    networks:
+      - digipet-network
 
   redis:
     image: redis:latest
     ports:
       - "6379:6379"
+    networks:
+      - digipet-network
 
   sqlserver:
     image: mcr.microsoft.com/azure-sql-edge
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
+      - SA_PASSWORD=MyPass@word
+      - MSSQL_PID=Developer
+      - MSSQL_DATABASE=digipet
     ports:
       - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - digipet-network
+
+networks:
+  digipet-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:

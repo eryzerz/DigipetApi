@@ -1,4 +1,4 @@
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Program.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Program.cs
 FN:10,System.Void Program::<Main>$(System.String[])
 FNDA:0,System.Void Program::<Main>$(System.String[])
 DA:11,0
@@ -65,21 +65,27 @@ DA:82,0
 DA:85,0
 DA:88,0
 DA:90,0
+DA:92,0
 DA:93,0
 DA:94,0
 DA:95,0
 DA:96,0
 DA:97,0
-DA:99,0
+DA:100,0
+DA:101,0
 DA:102,0
+DA:103,0
 DA:104,0
 DA:106,0
-DA:108,0
-BRDA:93,356,0,0
-BRDA:93,356,1,0
+DA:109,0
+DA:111,0
+DA:113,0
+DA:115,0
+BRDA:100,413,0,0
+BRDA:100,413,1,0
 BRDA:60,123,0,0
 BRDA:60,123,1,0
-LF:74
+LF:80
 LH:0
 BRF:4
 BRH:0
@@ -97,7 +103,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/JWTSettings.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/JWTSettings.cs
 FN:4,System.String DigipetApi.Api.JwtSettings::get_SecretKey()
 FNDA:26,System.String DigipetApi.Api.JwtSettings::get_SecretKey()
 DA:5,26
@@ -120,7 +126,7 @@ BRH:0
 FNF:5
 FNH:5
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Services/PetAttributeDecayService.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Services/PetAttributeDecayService.cs
 FN:14,System.Void DigipetApi.Api.Services.PetAttributeDecayService::.ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger`1<DigipetApi.Api.Services.PetAttributeDecayService>,System.Nullable`1<System.TimeSpan>)
 FNDA:1,System.Void DigipetApi.Api.Services.PetAttributeDecayService::.ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger`1<DigipetApi.Api.Services.PetAttributeDecayService>,System.Nullable`1<System.TimeSpan>)
 DA:15,1
@@ -176,7 +182,7 @@ BRH:3
 FNF:3
 FNH:2
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Services/PetCacheService.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Services/PetCacheService.cs
 FN:14,System.Void DigipetApi.Api.Services.PetCacheService::.ctor(Microsoft.Extensions.Caching.Distributed.IDistributedCache,Microsoft.Extensions.Logging.ILogger`1<DigipetApi.Api.Services.PetCacheService>)
 FNDA:4,System.Void DigipetApi.Api.Services.PetCacheService::.ctor(Microsoft.Extensions.Caching.Distributed.IDistributedCache,Microsoft.Extensions.Logging.ILogger`1<DigipetApi.Api.Services.PetCacheService>)
 DA:15,4
@@ -222,7 +228,7 @@ BRH:2
 FNF:4
 FNH:4
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Services/ScheduledTaskService.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Services/ScheduledTaskService.cs
 FN:11,System.Void DigipetApi.Api.Services.ScheduledTaskService::.ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger`1<DigipetApi.Api.Services.ScheduledTaskService>)
 FNDA:3,System.Void DigipetApi.Api.Services.ScheduledTaskService::.ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger`1<DigipetApi.Api.Services.ScheduledTaskService>)
 DA:12,3
@@ -296,7 +302,7 @@ BRH:7
 FNF:4
 FNH:4
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Models/Pet.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Models/Pet.cs
 FN:4,System.Int32 DigipetApi.Api.Models.Pet::get_PetId()
 FNDA:94,System.Int32 DigipetApi.Api.Models.Pet::get_PetId()
 DA:5,94
@@ -337,30 +343,7 @@ BRH:0
 FNF:11
 FNH:10
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Models/PetInteraction.cs
-FN:4,System.Int32 DigipetApi.Api.Models.PetInteraction::get_InteractionId()
-FNDA:0,System.Int32 DigipetApi.Api.Models.PetInteraction::get_InteractionId()
-DA:5,0
-FN:5,System.Int32 DigipetApi.Api.Models.PetInteraction::get_PetId()
-FNDA:0,System.Int32 DigipetApi.Api.Models.PetInteraction::get_PetId()
-DA:6,0
-FN:6,System.String DigipetApi.Api.Models.PetInteraction::get_InteractionType()
-FNDA:0,System.String DigipetApi.Api.Models.PetInteraction::get_InteractionType()
-DA:7,0
-FN:7,System.DateTime DigipetApi.Api.Models.PetInteraction::get_InteractionTime()
-FNDA:0,System.DateTime DigipetApi.Api.Models.PetInteraction::get_InteractionTime()
-DA:8,0
-FN:10,DigipetApi.Api.Models.Pet DigipetApi.Api.Models.PetInteraction::get_Pet()
-FNDA:0,DigipetApi.Api.Models.Pet DigipetApi.Api.Models.PetInteraction::get_Pet()
-DA:11,0
-LF:5
-LH:0
-BRF:0
-BRH:0
-FNF:5
-FNH:0
-end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Models/ScheduledTask.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Models/ScheduledTask.cs
 FN:7,System.Int32 DigipetApi.Api.Models.ScheduledTask::get_TaskId()
 FNDA:7,System.Int32 DigipetApi.Api.Models.ScheduledTask::get_TaskId()
 DA:8,7
@@ -389,7 +372,7 @@ BRH:0
 FNF:7
 FNH:6
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Models/User.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Models/User.cs
 FN:4,System.Int32 DigipetApi.Api.Models.User::get_UserId()
 FNDA:7,System.Int32 DigipetApi.Api.Models.User::get_UserId()
 DA:5,7
@@ -424,7 +407,7 @@ BRH:0
 FNF:9
 FNH:9
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240816105320_init.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240816105320_init.cs
 FN:12,System.Void DigipetApi.Api.Migrations.init::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.init::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 DA:13,0
@@ -489,7 +472,7 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240816105320_init.Designer.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240816105320_init.Designer.cs
 FN:19,System.Void DigipetApi.Api.Migrations.init::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.init::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 DA:20,0
@@ -591,7 +574,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240816180437_user-refresh-token.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240816180437_user-refresh-token.cs
 FN:12,System.Void DigipetApi.Api.Migrations.userrefreshtoken::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.userrefreshtoken::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 DA:13,0
@@ -623,7 +606,7 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240816180437_user-refresh-token.Designer.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240816180437_user-refresh-token.Designer.cs
 FN:19,System.Void DigipetApi.Api.Migrations.userrefreshtoken::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.userrefreshtoken::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 DA:20,0
@@ -731,7 +714,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240817065025_AddScheduledTasks.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240817065025_AddScheduledTasks.cs
 FN:12,System.Void DigipetApi.Api.Migrations.AddScheduledTasks::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.AddScheduledTasks::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 DA:13,0
@@ -775,7 +758,7 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240817065025_AddScheduledTasks.Designer.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240817065025_AddScheduledTasks.Designer.cs
 FN:19,System.Void DigipetApi.Api.Migrations.AddScheduledTasks::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.AddScheduledTasks::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 DA:20,0
@@ -924,7 +907,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240817070433_AdjustScheduledTasks.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240817070433_AdjustScheduledTasks.cs
 FN:11,System.Void DigipetApi.Api.Migrations.AdjustScheduledTasks::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.AdjustScheduledTasks::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
 DA:12,0
@@ -940,7 +923,7 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/20240817070433_AdjustScheduledTasks.Designer.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/20240817070433_AdjustScheduledTasks.Designer.cs
 FN:19,System.Void DigipetApi.Api.Migrations.AdjustScheduledTasks::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.AdjustScheduledTasks::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 DA:20,0
@@ -1089,7 +1072,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Migrations/ApplicationDBContextModelSnapshot.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Migrations/ApplicationDBContextModelSnapshot.cs
 FN:16,System.Void DigipetApi.Api.Migrations.ApplicationDBContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 FNDA:0,System.Void DigipetApi.Api.Migrations.ApplicationDBContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
 DA:17,0
@@ -1238,7 +1221,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Mappers/PetMappers.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Mappers/PetMappers.cs
 FN:8,DigipetApi.Api.Dtos.Pet.PetDto DigipetApi.Api.Mappers.PetMappers::ToPetDto(DigipetApi.Api.Models.Pet)
 FNDA:43,DigipetApi.Api.Dtos.Pet.PetDto DigipetApi.Api.Mappers.PetMappers::ToPetDto(DigipetApi.Api.Models.Pet)
 DA:9,43
@@ -1263,7 +1246,7 @@ BRH:0
 FNF:1
 FNH:1
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/ScheduledTask/ScheduledFeedingDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/ScheduledTask/ScheduledFeedingDto.cs
 FN:7,System.Int32 DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_PetId()
 FNDA:9,System.Int32 DigipetApi.Api.Dtos.ScheduledTask.ScheduleFeedingDto::get_PetId()
 DA:8,9
@@ -1280,7 +1263,7 @@ BRH:0
 FNF:3
 FNH:3
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/Pet/AdoptPetDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Pet/AdoptPetDto.cs
 FN:4,System.Int32 DigipetApi.Api.Dtos.Pet.AdoptPetDto::get_UserId()
 FNDA:0,System.Int32 DigipetApi.Api.Dtos.Pet.AdoptPetDto::get_UserId()
 DA:5,0
@@ -1291,7 +1274,7 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/Pet/InteractPetDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Pet/InteractPetDto.cs
 FN:9,System.String DigipetApi.Api.Dtos.Pet.InteractPetDto::get_Type()
 FNDA:25,System.String DigipetApi.Api.Dtos.Pet.InteractPetDto::get_Type()
 DA:10,25
@@ -1318,7 +1301,7 @@ BRH:0
 FNF:2
 FNH:1
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/Pet/PetDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Pet/PetDto.cs
 FN:4,System.Int32 DigipetApi.Api.Dtos.Pet.PetDto::get_PetId()
 FNDA:83,System.Int32 DigipetApi.Api.Dtos.Pet.PetDto::get_PetId()
 DA:5,83
@@ -1356,7 +1339,7 @@ BRH:0
 FNF:10
 FNH:10
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/Auth/LoginDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Auth/LoginDto.cs
 FN:7,System.String DigipetApi.Api.Dtos.Auth.LoginDto::get_UsernameOrEmail()
 FNDA:6,System.String DigipetApi.Api.Dtos.Auth.LoginDto::get_UsernameOrEmail()
 DA:8,6
@@ -1370,7 +1353,7 @@ BRH:0
 FNF:2
 FNH:2
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/Auth/RefreshTokenDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Auth/RefreshTokenDto.cs
 FN:4,System.String DigipetApi.Api.Dtos.Auth.RefreshTokenDto::get_AccessToken()
 FNDA:4,System.String DigipetApi.Api.Dtos.Auth.RefreshTokenDto::get_AccessToken()
 DA:5,4
@@ -1384,7 +1367,7 @@ BRH:0
 FNF:2
 FNH:2
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Dtos/Auth/RegisterDto.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Dtos/Auth/RegisterDto.cs
 FN:7,System.String DigipetApi.Api.Dtos.Auth.RegisterDto::get_Username()
 FNDA:12,System.String DigipetApi.Api.Dtos.Auth.RegisterDto::get_Username()
 DA:8,12
@@ -1401,16 +1384,16 @@ BRH:0
 FNF:3
 FNH:3
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Data/ApplicationDBContext.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Data/ApplicationDBContext.cs
 FN:12,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.User> DigipetApi.Api.Data.ApplicationDBContext::get_Users()
 FNDA:111,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.User> DigipetApi.Api.Data.ApplicationDBContext::get_Users()
 DA:13,111
 FN:13,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Data.ApplicationDBContext::get_Pets()
 FNDA:100,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Data.ApplicationDBContext::get_Pets()
 DA:14,100
-FN:15,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.ScheduledTask> DigipetApi.Api.Data.ApplicationDBContext::get_ScheduledTasks()
+FN:14,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.ScheduledTask> DigipetApi.Api.Data.ApplicationDBContext::get_ScheduledTasks()
 FNDA:100,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.ScheduledTask> DigipetApi.Api.Data.ApplicationDBContext::get_ScheduledTasks()
-DA:16,100
+DA:15,100
 FN:8,System.Void DigipetApi.Api.Data.ApplicationDBContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<DigipetApi.Api.Data.ApplicationDBContext>)
 FNDA:46,System.Void DigipetApi.Api.Data.ApplicationDBContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<DigipetApi.Api.Data.ApplicationDBContext>)
 DA:9,46
@@ -1423,7 +1406,7 @@ BRH:0
 FNF:4
 FNH:4
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Controllers/AuthController.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Controllers/AuthController.cs
 FN:29,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.AuthController::Register(DigipetApi.Api.Dtos.Auth.RegisterDto)
 FNDA:4,Microsoft.AspNetCore.Mvc.IActionResult DigipetApi.Api.Controllers.AuthController::Register(DigipetApi.Api.Dtos.Auth.RegisterDto)
 DA:30,4
@@ -1590,7 +1573,7 @@ BRH:23
 FNF:8
 FNH:8
 end_of_record
-SF:/Users/eryz/Documents/projects/DigipetApi/Api/Controllers/PetController.cs
+SF:/Users/eryz/Documents/projects/TEST/DigipetApi/Api/Controllers/PetController.cs
 FN:28,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Controllers.PetController::get_Pets()
 FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<DigipetApi.Api.Models.Pet> DigipetApi.Api.Controllers.PetController::get_Pets()
 DA:29,0
