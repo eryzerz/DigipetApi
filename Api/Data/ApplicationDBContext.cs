@@ -10,6 +10,12 @@ public class ApplicationDBContext : DbContext
     {
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        PetSeeder.SeedPets(modelBuilder);
+    }
+
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Pet> Pets { get; set; } = null!;
     public DbSet<ScheduledTask> ScheduledTasks { get; set; } = null!;

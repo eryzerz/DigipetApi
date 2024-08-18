@@ -7,6 +7,8 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using DigipetApi.Api.Services;
 using DigipetApi.Api.Interfaces;
+using StackExchange.Redis;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,8 +75,25 @@ builder.Services.AddAuthentication(options =>
 // Add Redis caching
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    var configuration = builder.Configuration.GetConnectionString("Redis");
+    options.Configuration = configuration;
     options.InstanceName = "DigipetCache_";
+
+    // Add logging
+    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
+    logger.LogInformation($"Configuring Redis with connection string: {configuration}");
+
+    // Test the connection
+    try
+    {
+        var redis = ConnectionMultiplexer.Connect(configuration);
+        redis.GetDatabase().Ping();
+        logger.LogInformation("Successfully connected to Redis");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Failed to connect to Redis");
+    }
 });
 
 // Add PetCacheService
