@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  digipetapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+      - "8081:443"
+    depends_on:
+      - redis
+      - sqlserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=DigipetDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
+      - Redis__ConnectionString=redis:6379
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  sqlserver:
+    image: mcr.microsoft.com/azure-sql-edge
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
