@@ -10,10 +10,11 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
+using DigipetApi.Api.Interfaces;
 
 namespace DigipetApi.Api.Services;
 
-public class TezosService
+public class TezosService : ITezosService
 {
     private readonly TezosRpc _rpc;
     private readonly Key _adminKey;

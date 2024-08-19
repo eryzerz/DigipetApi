@@ -113,7 +113,7 @@ builder.Services.AddHostedService<ScheduledTaskService>();
 builder.Services.AddHostedService<PetAttributeDecayService>();
 
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<TezosService>();
+builder.Services.AddScoped<ITezosService, TezosService>();
 
 var app = builder.Build();
 
