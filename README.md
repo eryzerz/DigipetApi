@@ -7,12 +7,13 @@ This is a REST API for a Digital Pet Management application, providing a compreh
 - JWT Authentication
 - Data Caching using Redis
 - Background processing
+- Smart Contract Integration
 
 ## Functionality
 
 With this API, users can:
 
-- Adopt virtual pets
+- Adopt and Mint virtual pets
 - Interact with their pets
 - Create and manage feeding schedules for pets
 
@@ -53,13 +54,9 @@ With this API, users can:
 
   - GET /api/pet/available
 
-- Adopt a pet:
+- Adopt and Mint a pet:
 
   - PATCH /api/pet/{id}/adopt
-
-- Return a pet, will decrease the pet's happiness and mood:
-
-  - PATCH /api/pet/{id}/return
 
 - Interact with a pet; you can feed, play, train, groom, and adventure with a pet. Each interaction will have a different effect on the pet's attributes:
 
@@ -76,22 +73,25 @@ With this API, users can:
 
 - Docker
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [Tezos Wallet](https://tezos.com/wallet) Private Key
 
 ### Running the Project
 
 To run the project, use Docker Compose:
 
-1. Run the project using Docker Compose:
+1. Go to `Api/appsettings.json` and replace the `AdminPrivateKey` with your Tezos Wallet Private Key.
+
+2. Run the project using Docker Compose:
 
    ```bash
    docker-compose up --build
    ```
 
-2. Once all containers are running, access the API documentation at https://localhost:8081/swagger/index.html
+3. Once all containers are running, access the API documentation at https://localhost:8081/swagger/index.html
 
-3. To be able to use the API, you will need to register a user and get the JWT token. You can do this by using the Register endpoint and then using the Login endpoint to get the JWT token.
+4. To be able to use the API, you will need to register a user and get the JWT token. You can do this by using the Register endpoint and then using the Login endpoint to get the JWT token.
 
-4. You can use the JWT token to authorize your requests to the API. Find the "Authorize" button in the swagger UI and enter the JWT token in the "Value" field. **Do not forget to add the "Bearer " prefix to the token**.
+5. You can use the JWT token to authorize your requests to the API. Find the "Authorize" button in the swagger UI and enter the JWT token in the "Value" field. **Do not forget to add the "Bearer " prefix to the token**.
 
 ### Unit Test
 
