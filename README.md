@@ -73,7 +73,7 @@ With this API, users can:
 
 - Docker
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-- [Tezos Wallet](https://tezos.com/wallet) Private Key
+- [Tezos Wallet](https://docs.tezos.com/developing/wallet-setup) Private Key
 
 ### Running the Project
 
