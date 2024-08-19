@@ -103,7 +103,11 @@ To run the project, use Docker Compose:
    ```bash
    dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info -v n
    ```
-4. Generate a coverage report:
+4. Install coverlet.console globally on your machine:
+   ```bash
+   dotnet tool install --global coverlet.console
+   ```
+5. Generate a coverage report:
    ```bash
    coverlet bin/Debug/net8.0/DigipetApi.Tests.dll --target "dotnet" --targetargs "test --no-build" --format lcov --output ./lcov.info
    ```
