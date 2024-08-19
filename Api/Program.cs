@@ -112,6 +112,9 @@ builder.Services.AddHostedService<ScheduledTaskService>();
 // Add PetAttributeDecayService
 builder.Services.AddHostedService<PetAttributeDecayService>();
 
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<TezosService>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -120,6 +123,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<ApplicationDBContext>();
     context.Database.EnsureCreated();
 }
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

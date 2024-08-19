@@ -10,6 +10,7 @@ using DigipetApi.Api.Models;
 using DigipetApi.Api.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 
 namespace DigipetApi.Api.Controllers;
 
@@ -20,11 +21,15 @@ public class PetController : ControllerBase
 {
     private readonly ApplicationDBContext _context;
     private readonly IPetCacheService _cacheService;
+    private readonly TezosService _tezosService;
+    private readonly ILogger<PetController> _logger;
 
-    public PetController(ApplicationDBContext context, IPetCacheService cacheService)
+    public PetController(ApplicationDBContext context, IPetCacheService cacheService, TezosService tezosService, ILogger<PetController> logger)
     {
         _context = context;
         _cacheService = cacheService;
+        _tezosService = tezosService;
+        _logger = logger;
     }
 
     // Change this to a protected virtual property
@@ -103,45 +108,24 @@ public class PetController : ControllerBase
 
         pet.UserId = currentUserId;
         pet.UpdatedAt = DateTime.UtcNow;
-        _context.SaveChanges();
 
-        var updatedPetDto = pet.ToPetDto();
-        await _cacheService.SetPetAsync(updatedPetDto);
-
-        return Ok(updatedPetDto);
-    }
-
-    [HttpPatch("{id}/return")]
-    public async Task<IActionResult> ReturnPet(int id)
-    {
-        var pet = await Pets.FindAsync(id);
-
-        if (pet == null)
+        try
         {
-            return NotFound();
+            // Mint the pet on the Tezos blockchain
+            var transactionHash = await _tezosService.MintPet(pet);
+
+            _context.SaveChanges();
+
+            var updatedPetDto = pet.ToPetDto();
+            await _cacheService.SetPetAsync(updatedPetDto);
+
+            return Ok(new { pet = updatedPetDto, transactionHash });
         }
-
-        var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-
-        if (pet.UserId != currentUserId)
+        catch (Exception ex)
         {
-            return Unauthorized("You can only return pets that you own.");
+            _logger.LogError(ex, $"Error adopting pet {id}");
+            return StatusCode(500, "An error occurred while adopting the pet. Please try again later.");
         }
-
-        // Decrease mood and happiness by 10
-        pet.Mood = Math.Max(0, pet.Mood - 10);
-        pet.Happiness = Math.Max(0, pet.Happiness - 10);
-
-        // Reset the UserId to null
-        pet.UserId = null;
-        pet.UpdatedAt = DateTime.UtcNow;
-
-        await _context.SaveChangesAsync();
-
-        var updatedPetDto = pet.ToPetDto();
-        await _cacheService.SetPetAsync(updatedPetDto);
-
-        return Ok(updatedPetDto);
     }
 
     [HttpPatch("{id}/interact")]
