@@ -20,47 +20,53 @@ With this API, users can:
 
 #### Auth
 
-> POST /api/auth/login
+- Login
 
-> POST /api/auth/register
+  - POST /api/auth/login
 
-> POST /api/auth/refresh-token
+- Register
 
-> POST /api/auth/logout
+  - POST /api/auth/register
+
+- Refresh Token
+
+  - POST /api/auth/refresh-token
+
+- Logout
+  - POST /api/auth/logout
 
 #### Pets
 
-Get all pets:
+- Get all pets:
 
-> GET /api/pet
+  - GET /api/pet
 
-Get a pet by id:
+- Get a pet by id:
 
-> GET /api/pet/{id}
+  - GET /api/pet/{id}
 
-Get all adopted pets by user:
+- Get all adopted pets by user:
 
-> GET /api/pet
+  - GET /api/pet
 
-Get all available pets to adopt:
+- Get all available pets to adopt:
 
-> GET /api/pet/available
+  - GET /api/pet/available
 
-Adopt a pet:
+- Adopt a pet:
 
-> PATCH /api/pet/{id}/adopt
+  - PATCH /api/pet/{id}/adopt
 
-Return a pet, will decrease the pet's happiness and mood:
+- Return a pet, will decrease the pet's happiness and mood:
 
-> PATCH /api/pet/{id}/return
+  - PATCH /api/pet/{id}/return
 
-Interact with a pet; you can feed, play, groom, train, groom, and adventure with a pet. Each interaction will have a different effect on the pet's attributes:
+- Interact with a pet; you can feed, play, train, groom, and adventure with a pet. Each interaction will have a different effect on the pet's attributes:
 
-> PATCH /api/pet/{id}/interact
+  - PATCH /api/pet/{id}/interact
 
-Create a schedule to feed a pet:
-
-> POST /api/pet/{id}/schedule-feeding
+- Create a schedule to feed a pet:
+  - POST /api/pet/{id}/schedule-feeding
 
 **Note:** The attributes of the adopted pets will decrease over time, and the pets will need to be fed, played with, groomed, trained, and/or adventured with to keep their attributes up.
 
@@ -103,7 +109,12 @@ To run the project, use Docker Compose:
    ```bash
    dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info -v n
    ```
-4. Generate a coverage report:
+4. Install coverlet.console globally on your machine:
+   ```bash
+   dotnet tool install --global coverlet.console
+   ```
+   **Note**: If this is your first time installing dotnet tool, you may need to follow the instructions presented in the terminal after running the command.
+5. Generate a coverage report:
    ```bash
    coverlet bin/Debug/net8.0/DigipetApi.Tests.dll --target "dotnet" --targetargs "test --no-build" --format lcov --output ./lcov.info
    ```
