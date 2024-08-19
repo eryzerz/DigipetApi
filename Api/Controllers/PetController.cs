@@ -21,10 +21,10 @@ public class PetController : ControllerBase
 {
     private readonly ApplicationDBContext _context;
     private readonly IPetCacheService _cacheService;
-    private readonly TezosService _tezosService;
+    private readonly ITezosService _tezosService;
     private readonly ILogger<PetController> _logger;
 
-    public PetController(ApplicationDBContext context, IPetCacheService cacheService, TezosService tezosService, ILogger<PetController> logger)
+    public PetController(ApplicationDBContext context, IPetCacheService cacheService, ITezosService tezosService, ILogger<PetController> logger)
     {
         _context = context;
         _cacheService = cacheService;

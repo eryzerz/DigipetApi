@@ -13,12 +13,15 @@ using DigipetApi.Api.Models;
 using DigipetApi.Api.Dtos.ScheduledTask;
 using System.Security.Claims;
 using DigipetApi.Api.Dtos;
+using Microsoft.Extensions.Logging;
 
 namespace DigipetApi.Tests.Controllers;
 public class PetControllerTests
 {
     private readonly ApplicationDBContext _context;
     private readonly Mock<IPetCacheService> _mockCacheService;
+    private readonly Mock<ITezosService> _mockTezosService;
+    private readonly Mock<ILogger<PetController>> _mockLogger;
 
     public PetControllerTests()
     {
@@ -28,14 +31,16 @@ public class PetControllerTests
 
         _context = new ApplicationDBContext(options);
         _mockCacheService = new Mock<IPetCacheService>();
+        _mockTezosService = new Mock<ITezosService>();
+        _mockLogger = new Mock<ILogger<PetController>>();
     }
 
     private class TestPetController : PetController
     {
         private readonly DbSet<Pet> _pets;
 
-        public TestPetController(ApplicationDBContext context, IPetCacheService cacheService, DbSet<Pet> pets)
-          : base(context, cacheService)
+        public TestPetController(ApplicationDBContext context, IPetCacheService cacheService, ITezosService tezosService, ILogger<PetController> logger, DbSet<Pet> pets)
+          : base(context, cacheService, tezosService, logger)
         {
             _pets = pets;
         }
@@ -53,7 +58,7 @@ public class PetControllerTests
         var cachedPet = new PetDto { PetId = petId, Name = "TestPet" };
         _mockCacheService.Setup(s => s.GetPetAsync(petId)).ReturnsAsync(cachedPet);
 
-        var controller = new PetController(_context, _mockCacheService.Object);
+        var controller = new PetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object);
 
         // Act
         var result = await controller.GetById(petId);
@@ -81,7 +86,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(dbPet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = await controller.GetById(petId);
@@ -107,7 +112,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync((Pet?)null);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = await controller.GetById(petId);
@@ -139,7 +144,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(userPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(userPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Mock the User claim
         var claims = new List<Claim>
@@ -176,7 +181,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(userPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(userPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Mock the User claim
         var claims = new List<Claim>
@@ -218,7 +223,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Mock the User claim
         var claims = new List<Claim>
@@ -256,7 +261,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Mock the User claim with invalid ID
         var claims = new List<Claim>
@@ -287,7 +292,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Mock the User claim without NameIdentifier
         var claims = new List<Claim>();
@@ -327,7 +332,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = controller.GetAvailablePets();
@@ -359,7 +364,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = controller.GetAvailablePets();
@@ -387,7 +392,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = controller.GetAvailablePets();
@@ -419,7 +424,7 @@ public class PetControllerTests
         mockSet.As<IQueryable<Pet>>().Setup(m => m.ElementType).Returns(allPets.AsQueryable().ElementType);
         mockSet.As<IQueryable<Pet>>().Setup(m => m.GetEnumerator()).Returns(allPets.GetEnumerator());
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = controller.GetAvailablePets();
@@ -449,11 +454,13 @@ public class PetControllerTests
         // Arrange
         var petId = 1;
         var currentUserId = 2;
-        var pet = new Pet { PetId = petId, UserId = null };
+        var initPet = new Pet { PetId = petId, UserId = null };
         var mockSet = new Mock<DbSet<Pet>>();
-        mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(pet);
+        mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(initPet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        _mockTezosService.Setup(s => s.MintPet(It.IsAny<Pet>())).ReturnsAsync("fakeTransactionHash");
+
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, currentUserId);
 
         // Act
@@ -461,10 +468,33 @@ public class PetControllerTests
 
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result);
-        var adoptedPet = Assert.IsType<PetDto>(okResult.Value);
-        Assert.Equal(currentUserId, adoptedPet.UserId);
-        Assert.Equal(petId, adoptedPet.PetId);
+        var adoptedPetResult = okResult.Value;
+
+        // Use reflection to access properties of the anonymous type
+        var petProperty = adoptedPetResult.GetType().GetProperty("pet");
+        Assert.NotNull(petProperty);
+        var petValue = petProperty.GetValue(adoptedPetResult);
+        Assert.IsType<PetDto>(petValue);
+        var pet = (PetDto)petValue;
+
+        var transactionHashProperty = adoptedPetResult.GetType().GetProperty("transactionHash");
+        Assert.NotNull(transactionHashProperty);
+        var transactionHashValue = transactionHashProperty.GetValue(adoptedPetResult);
+        Assert.IsType<string>(transactionHashValue);
+        var transactionHash = (string)transactionHashValue;
+
+        // Assert pet properties
+        Assert.Equal(petId, pet.PetId);
+        Assert.Equal(currentUserId, pet.UserId);
+        Assert.Equal(100, pet.Health);
+        Assert.Equal(100, pet.Mood);
+        Assert.Equal(100, pet.Happiness);
+
+        // Assert transactionHash
+        Assert.Equal("fakeTransactionHash", transactionHash);
+
         _mockCacheService.Verify(s => s.SetPetAsync(It.IsAny<PetDto>()), Times.Once);
+        _mockTezosService.Verify(s => s.MintPet(It.IsAny<Pet>()), Times.Once);
     }
 
     [Fact]
@@ -475,7 +505,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync((Pet?)null);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = await controller.AdoptPet(petId);
@@ -493,7 +523,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(pet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = await controller.AdoptPet(petId);
@@ -501,6 +531,40 @@ public class PetControllerTests
         // Assert
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal("This pet is already adopted.", badRequestResult.Value);
+    }
+
+    [Fact]
+    public async Task AdoptPet_TezosServiceThrowsException_ReturnsInternalServerError()
+    {
+        // Arrange
+        var petId = 1;
+        var currentUserId = 2;
+        var pet = new Pet { PetId = petId, UserId = null };
+        var mockSet = new Mock<DbSet<Pet>>();
+        mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(pet);
+
+        _mockTezosService.Setup(s => s.MintPet(It.IsAny<Pet>())).ThrowsAsync(new Exception("Tezos service error"));
+
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
+        SetupUserClaim(controller, currentUserId);
+
+        // Act
+        var result = await controller.AdoptPet(petId);
+
+        // Assert
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+        Assert.Equal("An error occurred while adopting the pet. Please try again later.", statusCodeResult.Value);
+        _mockLogger.Verify(
+            x => x.Log(
+                It.Is<LogLevel>(l => l == LogLevel.Error),
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains($"Error adopting pet {petId}")),
+                It.IsAny<Exception>(),
+                It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)
+            ),
+            Times.Once
+        );
     }
 
     private void SetupUserClaim(ControllerBase controller, int userId)
@@ -529,7 +593,7 @@ public class PetControllerTests
         _mockCacheService.Setup(s => s.SetPetAsync(It.IsAny<PetDto>())).Returns(Task.CompletedTask);
 
         var mockSet = new Mock<DbSet<Pet>>();
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         var interactDto = new InteractPetDto { Type = InteractionType.feed };
@@ -558,7 +622,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(dbPet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         var interactDto = new InteractPetDto { Type = InteractionType.play };
@@ -585,7 +649,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync((Pet?)null);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         var interactDto = new InteractPetDto { Type = InteractionType.feed };
 
@@ -607,7 +671,7 @@ public class PetControllerTests
         var cachedPet = new PetDto { PetId = petId, UserId = userId };
         _mockCacheService.Setup(s => s.GetPetAsync(petId)).ReturnsAsync(cachedPet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, differentUserId);
 
         var interactDto = new InteractPetDto { Type = InteractionType.feed };
@@ -630,7 +694,7 @@ public class PetControllerTests
         var cachedPet = new PetDto { PetId = petId, UserId = userId };
         _mockCacheService.Setup(s => s.GetPetAsync(petId)).ReturnsAsync(cachedPet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         var interactDto = new InteractPetDto { Type = (InteractionType)999 };
@@ -657,7 +721,7 @@ public class PetControllerTests
         _mockCacheService.Setup(s => s.GetPetAsync(petId)).ReturnsAsync(cachedPet);
         _mockCacheService.Setup(s => s.SetPetAsync(It.IsAny<PetDto>())).Returns(Task.CompletedTask);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         var interactDto = new InteractPetDto { Type = interactionType };
@@ -684,7 +748,7 @@ public class PetControllerTests
         _mockCacheService.Setup(s => s.GetPetAsync(petId)).ReturnsAsync(cachedPet);
         _mockCacheService.Setup(s => s.SetPetAsync(It.IsAny<PetDto>())).Returns(Task.CompletedTask);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         var interactDto = new InteractPetDto { Type = InteractionType.feed };
@@ -718,7 +782,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(pet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         // Act
@@ -744,7 +808,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync((Pet?)null);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
 
         // Act
         var result = await controller.ScheduleFeeding(scheduleFeedingDto);
@@ -770,7 +834,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(pet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         // Act
@@ -797,7 +861,7 @@ public class PetControllerTests
         var mockSet = new Mock<DbSet<Pet>>();
         mockSet.Setup(m => m.FindAsync(petId)).ReturnsAsync(pet);
 
-        var controller = new TestPetController(_context, _mockCacheService.Object, mockSet.Object);
+        var controller = new TestPetController(_context, _mockCacheService.Object, _mockTezosService.Object, _mockLogger.Object, mockSet.Object);
         SetupUserClaim(controller, userId);
 
         // Act
