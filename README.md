@@ -113,6 +113,7 @@ To run the project, use Docker Compose:
    ```bash
    dotnet tool install --global coverlet.console
    ```
+   **Note**: If this is your first time installing dotnet tool, you may need to follow the instructions presented in the terminal after running the command.
 5. Generate a coverage report:
    ```bash
    coverlet bin/Debug/net8.0/DigipetApi.Tests.dll --target "dotnet" --targetargs "test --no-build" --format lcov --output ./lcov.info
