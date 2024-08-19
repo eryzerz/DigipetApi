@@ -98,3 +98,8 @@ appsettings.Production.json
 
 # Sensitive or environment-specific config files
 *.env
+
+# Ligo
+.ligo/
+!.ligo/repository_id
+!.ligo/term_acceptance

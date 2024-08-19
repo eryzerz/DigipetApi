@@ -1,0 +1,54 @@
+namespace Digipet {
+  export type pet = {
+    id: nat,
+    name: string,
+    species: string,
+    pet_type: string,
+    health: nat,
+    mood: nat,
+    happiness: nat,
+    owner: address
+  };
+
+  export type storage = {
+    pets: map<nat, pet>,
+    next_id: nat
+  };
+
+  type mint_param = {
+    name: string,
+    species: string,
+    pet_type: string
+  };
+
+  type @return = [list<operation>, storage];
+
+  @entry
+  export const mint = (param: mint_param, store: storage): @return => {
+    const new_pet: pet = {
+      id: store.next_id,
+      name: param.name,
+      species: param.species,
+      pet_type: param.pet_type,
+      health: 100 as nat,
+      mood: 100 as nat,
+      happiness: 100 as nat,
+      owner: Tezos.get_sender()
+    };
+    
+    const updated_pets = Map.add(store.next_id, new_pet, store.pets);
+    const new_storage = {...store, pets: updated_pets, next_id: store.next_id + (1 as nat)};
+    
+    return [list([]) as list<operation>, new_storage];
+  };
+
+  @entry
+  const main = (action: mint_param, store: storage): @return => {
+    return mint(action, store)
+  };
+}
+
+export const sample_storage: Digipet.storage = {
+  pets: Map.empty as map<nat, Digipet.pet>,
+  next_id: 1 as nat
+};
