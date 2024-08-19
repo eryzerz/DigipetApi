@@ -89,8 +89,12 @@ public class TezosService
             _logger.LogInformation($"Injected operation. Operation hash: {opHash}");
 
             // Wait for confirmation
-            var confirmation = await WaitForConfirmation(opHash);
-            _logger.LogInformation($"Operation confirmed: {confirmation}");
+            var confirmed = await WaitForConfirmation(opHash);
+            if (!confirmed)
+            {
+                throw new Exception($"Operation {opHash} was not confirmed after multiple attempts");
+            }
+            _logger.LogInformation($"Operation confirmed: {opHash}");
 
             return opHash;
         }
@@ -101,34 +105,36 @@ public class TezosService
         }
     }
 
-    private async Task<bool> WaitForConfirmation(string opHash, int maxAttempts = 10)
+    private async Task<bool> WaitForConfirmation(string opHash, int maxAttempts = 20)
     {
         for (int i = 0; i < maxAttempts; i++)
         {
             try
             {
-                // Use the Blocks.Head.Operations query to check for the operation
                 var operations = await _rpc.Blocks.Head.Operations.GetAsync();
 
-                // Check if the operation hash exists in any of the operation lists
-                bool found = false;
                 foreach (var list in operations)
                 {
                     foreach (var op in list)
                     {
                         if (op.hash == opHash)
                         {
-                            found = true;
-                            break;
+                            if (op.contents != null && op.contents.Count > 0)
+                            {
+                                var status = op.contents[0].metadata?.operation_result?.status;
+                                if (status == "applied")
+                                {
+                                    _logger.LogInformation($"Operation {opHash} confirmed and applied");
+                                    return true;
+                                }
+                                else
+                                {
+                                    _logger.LogWarning($"Operation {opHash} found but status is {status}");
+                                    return false;
+                                }
+                            }
                         }
                     }
-                    if (found) break;
-                }
-
-                if (found)
-                {
-                    _logger.LogInformation($"Operation {opHash} confirmed");
-                    return true;
                 }
             }
             catch (Exception ex)
@@ -137,7 +143,7 @@ public class TezosService
             }
 
             _logger.LogInformation($"Waiting for operation {opHash} to be confirmed. Attempt {i + 1} of {maxAttempts}");
-            await Task.Delay(TimeSpan.FromSeconds(10));
+            await Task.Delay(TimeSpan.FromSeconds(5));
         }
 
         _logger.LogWarning($"Operation {opHash} not confirmed after {maxAttempts} attempts");

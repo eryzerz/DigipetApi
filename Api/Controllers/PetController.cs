@@ -106,15 +106,16 @@ public class PetController : ControllerBase
 
         var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 
-        pet.UserId = currentUserId;
-        pet.UpdatedAt = DateTime.UtcNow;
-
         try
         {
             // Mint the pet on the Tezos blockchain
             var transactionHash = await _tezosService.MintPet(pet);
 
-            _context.SaveChanges();
+            // If we reach here, the minting was successful and confirmed
+            pet.UserId = currentUserId;
+            pet.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
 
             var updatedPetDto = pet.ToPetDto();
             await _cacheService.SetPetAsync(updatedPetDto);
